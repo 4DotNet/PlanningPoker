@@ -8,6 +8,7 @@ using ScrumPlanningPoker.Models;
 
 namespace ScrumPlanningPoker
 {
+    // Note: most methods only used from client calls, that is why there are no apparent references
     public class GameHub : Hub
     {
         public void SignIn(string playerName, int gameId, bool isScrumMaster)
@@ -46,7 +47,6 @@ namespace ScrumPlanningPoker
 
             var currentGame = GameManager.Instance.GetGameById(gameId);
 
-            // Update laatste activiteit
             currentGame.LastActivity = DateTime.Now;
 
             var currentPlayer = GameManager.Instance.GetPlayerByName(gameId, playerName);
@@ -57,20 +57,20 @@ namespace ScrumPlanningPoker
                 currentGame.Scores.Add(currentPlayer, score);
 
             if (!currentGame.Rounds.ContainsKey(currentPlayer))
-                currentGame.Rounds.Add(currentPlayer, new List<Score> {new Score {Rating = score, Round = currentGame.CurrentRound}});
+                currentGame.Rounds.Add(currentPlayer, new List<Score> { new Score { Rating = score, Round = currentGame.CurrentRound } });
             else
             {
                 var playerScore = currentGame.Rounds[currentPlayer].Find(s => s.Round == currentGame.CurrentRound);
 
                 if (playerScore == null)
-                    currentGame.Rounds[currentPlayer].Add(new Score {Rating = score, Round = currentGame.CurrentRound});
+                    currentGame.Rounds[currentPlayer].Add(new Score { Rating = score, Round = currentGame.CurrentRound });
                 else
                     playerScore.Rating = score;
             }
 
             if (currentGame.Scores.Count == currentGame.Players.Count(p => (DateTime.Now.Ticks - p.LastPingResponse) < 80000000))
             {
-                Clients.Group(gameId.ToString(CultureInfo.InvariantCulture)).allScoresReceived(currentGame);       
+                Clients.Group(gameId.ToString(CultureInfo.InvariantCulture)).allScoresReceived(currentGame);
 
                 currentGame.Scores.Clear();
 
@@ -80,10 +80,8 @@ namespace ScrumPlanningPoker
             {
                 Clients.Group(gameId.ToString(CultureInfo.InvariantCulture)).scoreReceived(currentPlayer);
             }
-
         }
 
-        // Wordt alleen aangeroepen vanuit Client kant (daarom geen usages te vinden)
         public void Join(int gameId)
         {
             Groups.Add(Context.ConnectionId, gameId.ToString(CultureInfo.InvariantCulture));
@@ -103,7 +101,7 @@ namespace ScrumPlanningPoker
                 throw new Exception("Game not found");
 
             var currentGame = GameManager.Instance.GetGameById(gameId);
-            
+
             foreach (var player in currentGame.Players)
             {
                 var pingDiff = (DateTime.Now.Ticks - player.LastPingResponse);
@@ -117,7 +115,7 @@ namespace ScrumPlanningPoker
             return resultClients;
         }
 
-        // TODO speler verlaat het spel
+        // TODO do something when the user leaves?
         public void Leave()
         {
             throw new NotImplementedException();

@@ -155,7 +155,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Card.cs" />
+    <Compile Include="Enums\Card.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QRController.cs" />
@@ -168,8 +168,6 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Score.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\HoofdschermViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ScrumMasterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -327,11 +325,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ScrumMaster.cshtml" />
     <Content Include="Views\Home\Developer.cshtml" />
-    <Content Include="Views\Home\Hoofdscherm.cshtml" />
-    <Content Include="Views\Game\Hoofdscherm.cshtml" />
     <Content Include="Views\Game\Developer.cshtml" />
     <Content Include="Views\Game\ScrumMaster.cshtml" />
-    <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>

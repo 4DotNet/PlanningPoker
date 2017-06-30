@@ -1,15 +1,9 @@
-﻿using System.Globalization;
-using System.IO;
-using System.Web;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using ScrumPlanningPoker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
 
 namespace ScrumPlanningPoker.Helpers
 {
@@ -42,13 +36,14 @@ namespace ScrumPlanningPoker.Helpers
 
             var newGame = new Game { Master = speler.Id, UniqueKey = gameId };
 
-            // TODO betere foutafhandeling?
+            // TODO looks like start of dynamic card decks..
             //foreach (var card in cards)
             //    newGame.AvailableCards.Add((Card)Enum.Parse(typeof(Card), card.ToString(CultureInfo.InvariantCulture)));
 
             _games.Add(gameId, newGame);
         }
 
+        // TODO export voting history to PDF?
         //public void GetHistoryInPdf(int gameId)
         //{
         //    //Set page size as A4
@@ -106,11 +101,11 @@ namespace ScrumPlanningPoker.Helpers
         public void AddPlayerToGame(string playerName, int gameId, string connectionId)
         {
             var player = new Player
-                {
-                    Name = playerName,
-                    ConnectionId = connectionId,
-                    LastPingResponse = DateTime.Now.Ticks
-                };
+            {
+                Name = playerName,
+                ConnectionId = connectionId,
+                LastPingResponse = DateTime.Now.Ticks
+            };
 
             _games[gameId].Players.Add(player);
         }
@@ -120,7 +115,7 @@ namespace ScrumPlanningPoker.Helpers
             if (!GameExists(gameId))
                 throw new Exception("Game not found");
 
-            // TODO Checken of ie bestaat? of deze exception afvangen
+            // TODO Check if game does exist and handle more graceful
             return GetGameById(gameId).Players.First(player => player.ConnectionId == connectionId);
         }
 
@@ -129,7 +124,7 @@ namespace ScrumPlanningPoker.Helpers
             if (!GameExists(gameId))
                 throw new Exception("Game not found");
 
-            // TODO Checken of ie bestaat? of deze exception afvangen
+            // TODO Check if game does exist and handle more graceful
             return GetGameById(gameId).Players.FirstOrDefault(player => string.Equals(player.Name, name));
         }
 

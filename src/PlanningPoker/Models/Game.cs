@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ScrumPlanningPoker.Enums;
 
 namespace ScrumPlanningPoker.Models
 {
@@ -15,7 +16,7 @@ namespace ScrumPlanningPoker.Models
         public Dictionary<Player, int> Scores { get; set; }
         public Collection<Player> Players { get; set; }
         public Dictionary<Player, List<Score>> Rounds { get; set; }
-        
+
         private readonly ICollection<Card> _availableCards = new Collection<Card>();
         public ICollection<Card> AvailableCards { get { return _availableCards; } }
 

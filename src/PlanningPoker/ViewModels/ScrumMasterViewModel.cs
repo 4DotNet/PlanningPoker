@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ScrumPlanningPoker.Enums;
 
 namespace ScrumPlanningPoker.ViewModels
 {

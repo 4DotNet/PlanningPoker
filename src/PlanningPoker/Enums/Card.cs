@@ -1,5 +1,6 @@
-﻿namespace ScrumPlanningPoker
+﻿namespace ScrumPlanningPoker.Enums
 {
+    // TODO was added to enable dynamic card decks, but this isn't implemented yet
     public enum Card
     {
         Zero = 0,
