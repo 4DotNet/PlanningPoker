@@ -1,5 +1,4 @@
 # PlanningPoker
--
 
 ![VSTS Build badge](https://4dotnet.visualstudio.com/_apis/public/build/definitions/716bf77f-d5d2-4a26-9722-7841e536fb04/2/badge)
 
