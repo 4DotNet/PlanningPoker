@@ -1,0 +1,92 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Planning poker";
+}
+
+@Styles.Render("~/Content/css/add2home")
+<style>
+        hr {
+            height: 3px;
+            border: 0;
+            background-color: #c3c3c3;
+            background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#f7f6f4), to(#f7f6f4), color-stop(50%, #fff));
+            background-image: -webkit-linear-gradient(left, #f7f6f4, #fff, #f7f6f4);
+            background-image: -moz-linear-gradient(left, #f7f6f4, #fff, #f7f6f4);
+            background-image: -ms-linear-gradient(left, #f7f6f4, #fff, #f7f6f4);
+            background-image: -o-linear-gradient(left, #f7f6f4, #fff, #f7f6f4);
+        }
+
+        hr::after {
+            content: '';
+            display: block;
+            height: 1px;
+            background-color: #f7f6f4;
+            background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#f7f6f4), to(#f7f6f4), color-stop(50%, #c3c3c3));
+            background-image: -webkit-linear-gradient(left, #f7f6f4, #c3c3c3, #f7f6f4);
+            background-image: -moz-linear-gradient(left, #f7f6f4, #c3c3c3, #f7f6f4);
+            background-image: -ms-linear-gradient(left, #f7f6f4, #c3c3c3, #f7f6f4);
+            background-image: -o-linear-gradient(left, #f7f6f4, #c3c3c3, #f7f6f4);
+        }
+</style>
+
+<article id="calculator">
+    <h1 id="arc" class="pageTitle">Planning poker</h1>
+    <br style="clear: both"/>
+    @if (!string.IsNullOrWhiteSpace(@Request["errorMessage"]))
+    {
+        <div class="alert alert-error">
+            <strong>Fout:</strong>&nbsp;@Request["errorMessage"]
+        </div>
+    }
+    <form>
+        @Html.ActionLink("Scrum Master", "ScrumMaster", null, new { @class = "btn btn-default btn-lg btn-block" })&nbsp;
+        @Html.ActionLink("Developer", "Developer", null, new { @class = "btn btn-lg btn-success btn-block" })
+        <br />
+        <br />
+        <hr />
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style" style="float:left; line-height: 10px;">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_pinterest_pinit"></a>
+            <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5210b7a952622066"></script>
+        <!-- AddThis Button END -->
+        
+        <div style="float:right;"><a href="https://www.facebook.com/Planningpoker" target="_blank"><img src="/Content/img/facebook_logo.png" alt="Facebook page" style="max-width: 45px;"/></a>&nbsp;
+            <a href="https://twitter.com/Planning_poker" target="_blank"><img src="/Content/img/twitter_logo.png" alt="Twitter page" style="max-width: 45px;"/></a>&nbsp;<a href="mailto:info@planning-poker.nl"><img src="/Content/img/mail.png" alt="E-mail us!" style="max-width: 45px;"/></a>
+        </div>
+        <br style="clear:both;"/>
+    </form>
+    <br />
+    <div class="helpLink"><img class="fancyhr" src="/Content/img/hr.png" alt="" /><br /><a href="~/Home/Help" target="_blank" style="color: white;"><h3>Need help?</h3></a></div>
+    <div class="row" style="margin-bottom: 100px;">
+        <div class="col-md-6">
+            <h1 class="listTitle">Scrum master</h1>
+            <ol class="circle-list">
+                <li><h2>Start</h2><br /><p>by choosing a name of your liking, select if you would like to generate a QR code (easy access for you developers!)...</p></li>
+                <li><h2>Create a game</h2><br /><p>... Click 'Shuffle up!' to start the game!</p></li>
+                <li><h2>Play</h2><br /><p>Wait until all the developers have joined and present them with the first item to estimate. All in!</p></li>
+            </ol>
+        </div>
+        <div class="col-md-6">
+            <h1 class="listTitle">Developer</h1>
+            <ol class="circle-list">
+                <li><h2>Start</h2><br /><p>by pressing the 'Developer' button or scan the QR code on screen.</p></li>
+                <li><h2>Join the game</h2><br /><p>Enter your name and key to join the action!</p></li>
+                <li><h2>Play</h2><br /><p>Wait until your Scrum master hands you the first item and take a wild guess at it by choosing the correct card. Check!</p></li>
+            </ol>
+        </div>
+     </div>
+</article>
+
+@Scripts.Render("~/bundles/circletype")
+@Scripts.Render("~/bundles/add2home")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#arc').circleType({ radius: 484 });
+    });
+</script>

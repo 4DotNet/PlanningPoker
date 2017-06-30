@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Planning Poker - Help";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<article id="calculator" style="margin-bottom: 100px;">
+    <h1 id="arc" class="pageTitle">@ViewBag.Title</h1>
+    <br style="clear: both"/>
+    <form>
+        <strong>Welcome to Planning Poker!</strong>
+        <br />
+        <h3>History</h3>
+        Once upon a time, not to long ago, there were two (awesome) nerds who ran into a huge problem while carrying out their Scrum tasks. Okay, huge in a not so very huge way.<br />
+        Nevertheless. At the company they were working for they used to do their estimating with a fun little game called; Planning Poker. While this was mighty fun, the Scrum team grew, and soon it was discovered that
+        there were not enough sets of cards! OMG!!!11!<br />
+        <br />
+        <del>Nerds</del> bright as they are, they soon took out their smartphones (iPhones, of course) and scoured the App Store looking for a nifty little solution to solve the problem at hand.<br />
+        After finding a handful of Apps, they all seemd useless. They were all missing some awesomesauce. They looked shi.. Ahum. Not nice, didn't work, and worst of all; it were just sets of cards.. Only digital!<br />
+        <br />
+        Soon a 'challenge accepted' was blaring through the building. They would build a &lt;insert current year here&gt; solution. Not only would it provide enough sets of cards for everyone, it would also, automagically, show the (Scrum)
+        average score. Enable people to view the voting history, work on mobile devices, lay gold eggs, cure AIDS and be totally awesome whilst doing all that.<br />
+        <br />
+        So hereby we humbly present to you; Planning Poker (oeeeh-aaaah).
+        <br />
+        <h3>How stuff works</h3>
+        There are two ways of playing the game; be a Scrum master or a developer. The Scrum master is the one to start the game. The developers will be the once seeing a bunch of cards and cast their vote on the ongoing backlog item.<br />
+        
+        <h4>Scrum master</h4>
+        On the home screen, press the button that says; Scrum master (doh).
+        Enter your name, configure some other details and start the game with the funny labeled button on the bottom. On the screen there will be a unique key you can give out to your developers to join your game.<br />
+        If you yourself are also a developer, log in from another device of browser (tab) to also join the game.
+        <br /><br />
+        The Scrum master view is best viewed on a central screen within the room so everyone can see.
+        <h4>Developer</h4>
+        On the home screen, press the button that says; Developer (no, really!).
+        Enter your name and the unique key you got from you Scrum master (or by scanning the QR code on-screen) and join the game with the obviously labeled button on the bottom.
+        <br /><br />
+        Wait until all players have arrived, the Scrum master is ready to go and announces the first item to cast your vote on. Game on!
+        <h4>Basics</h4>
+        There are a few (hidden) features that you would like to know about before playing. These are also on the Scrum master screen as a handy reminder, right underneath the 'Legend' button.<br />
+        <table>
+            <tr>
+                <td><img style="width: 50px; margin: 5px;" src="~/Content/img/cards/cardGreen.png"/><strong>Active player</strong><br />The card with a green border is an active player. The connection is working just fine, and your vote is ready to be received.</td>
+                <td><img style="width: 50px; margin: 5px;" src="~/Content/img/cards/cardOrange.png"/><strong>Player?!</strong><br />Your connection is being weird. No worries, it will probably be back in a minute and turn green again. If not, try logging in again with the same name and unique key.</td>
+                <td><img style="width: 50px; margin: 5px;" src="~/Content/img/cards/cardRed.png"/><strong>Inactive player</strong><br />Oh darn, you broke it! The connection seems to be lost! Forevaah!1! Ok, that's not true. Just wake-up your smartphone, or, if that doesn't work, log in with the same name and unique key to rejoin the game.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center"><span class="cardname" style="display: inline">Playername</span><br /><strong>No score received</strong><br />When you did not cast a vote, for this round, yet, your name will look like this.</td>
+                <td style="text-align: center"><span class="cardname" style="color: green; display: inline">Playername</span><br /><strong>Score received!</strong><br />If you did cast a vote, your name will turn op green. Wrong vote? No biggie, you can keep changing your vote until the next round is up.</td>
+                <td></td>
+            </tr>
+        </table>
+        <h3>You're all set!</h3>
+        Choose one of the buttons below to start or join a game, already?!<br />
+        If you've got any questions or remarks just drop us a note <a href="mailto:info@planning-poker.nl" style="color:white;">here</a>
+        <br /><br />
+        <div class="text-center"><a class="btn btn-lg btn-default" href="~/Home/ScrumMaster">Start game</a>&nbsp;<a class="btn btn-lg btn-success" href="~/Home/Developer">Join game</a></div>
+    </form>
+</article>

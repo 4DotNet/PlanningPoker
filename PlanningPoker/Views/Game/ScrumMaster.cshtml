@@ -1,0 +1,182 @@
+﻿@model int
+
+@{
+    ViewBag.Title = string.Format("({0}) Planning poker", @Model);
+}
+
+<script src="~/signalr/hubs"></script>
+
+<script type="text/javascript">
+    // TODO: Dynamisch als we wel alle scores in willen bouwen, maar sommige willen kunnen uitsluiten
+    var possibleScores = [1, 3, 5, 8, 13, 20, 40, 100];
+    
+    function FindClosest(list, value) {
+        // omit the next line if the array is always sorted:
+        var arr = list.slice(0).sort(function(a,b){return a-b;});
+
+        for (var i=0; i < arr.length; i++)
+            if (arr[i] >= value)
+                return arr[i];
+
+        // return default value when val > all values in array
+    }
+    
+    $(function() {
+
+        $("#legendaButton").click(function() {
+            $("#legenda").slideToggle('fast');
+            return false;
+        });
+        
+        $("#historyButton").click(function() {
+            $("#roundHistory").slideToggle('fast');
+            return false;
+        });
+
+        var gameClient = $.connection.gameHub;
+
+        gameClient.client.playerSignedIn = function(name) {
+            $('#wachtenOpSpelers').hide();
+            $('#playerList').append('<li id="player' + name + 'li"><div class="flipbox-container"><div id="player' + name + '"><img class="borderNormal" id="card' + name + '" src="/Content/img/cards/card.png" alt="" /></div></div>' +
+                '<span class="cardname">' + name + '</span></li>');
+        };
+
+        gameClient.client.scoreReceived = function(player) {
+            $('#player' + player.Name + 'li .cardname').css('color', 'green');
+        };
+
+        gameClient.client.allScoresReceived = function(game) {
+            $('#scoreTable').empty();
+            $('#scoreCount').text(0);
+            var totalScore = 0;
+
+            //$('#scoreTable').append('<tr><th>Naam</th><th>Kaart</th></tr>');
+            
+            $.each(game.Scores, function(name, score) {
+                totalScore = totalScore + score;
+                
+                $('#card' + name).fadeOut('fast', function() {
+                    //$('#quickflip-' + name + ' #score' + name).html('<img src="/img/cards/card' + score + '.png" alt="" />');
+                    //$('#quickflip-' + name).quickFlip();
+                    $('#card' + name).attr('src', '/Content/img/cards/card' + score + '.png');
+                    //$('#player' + name).flip({ color: 'transparent', direction: 'rl', content: '<img class="borderNormal" id="card' + name + 'img" src="/Content/img/cards/card' + score + '.png" alt="" />' }); //.attr('src', '/Content/img/cards/card' + score + '.png');
+                    //$('#scoreTable').append('<tr><td>' + k + '</td><td>' + v + '</td></tr>');
+                
+                    $('#player' + name + 'li .cardname').css('color', 'rgba(255, 204, 0, 0.7)');
+
+                    $('#card' + name).fadeIn('fast');
+                });
+                
+            });
+
+            $('#historyRecords').empty();
+            
+            $('#historyRecords').append('<th>Naam</th><th>Ronde</th><th>Score</th>');
+
+            $.each(game.Rounds, function(name, score) {
+                $('#historyRecords').append('<tr id="row' + name +'"><td id="row' + name +'Name" rowspan="' + (score.length + 1) + '">' + name + '</td></tr>');
+
+                $.each(score, function(idx, rating) {
+                    $('#historyRecords').append('<tr><td>' + rating.Round + '</td><td>' + rating.Rating + '</td></tr>');
+                });
+            });
+            
+            var average = totalScore / Object.keys(game.Scores).length;
+
+            var averageScore = FindClosest(possibleScores, average);
+            //$('#scoreTable').append('<tr><td>Gemiddeld</td><td>' + totalScore / Object.keys(scores).length + '</td></tr>');
+            $('#roundSummary').html('<br /><strong>Average:</strong><br /><br /><img id="totalCard" class="borderNormal" src="/Content/img/cards/card' + averageScore + '.png" alt="" /><br /><br /><strong>Real average:</strong> ' + average.toFixed(0));
+            
+            $('#totalCard').animate({
+                borderLeftWidth: 30 + "px",
+                borderTopWidth: 30 + "px",
+                borderRightWidth: 30 + "px",
+                borderBottomWidth: 30 + "px"
+            }, 300);
+            
+            $('#totalCard').animate({
+                borderLeftWidth: 6 + "px",
+                borderTopWidth: 6 + "px",
+                borderRightWidth: 6 + "px",
+                borderBottomWidth: 6 + "px"
+            }, 50);
+        };
+
+        $.connection.hub.start().done(function() {
+            gameClient.server.signIn('@ViewBag.Naam', @ViewBag.UniqueKey, 'true');
+
+            gameClient.server.join(@ViewBag.UniqueKey);
+
+            setInterval(function() {
+                gameClient.server.getDisconnectedClients(@ViewBag.UniqueKey).done(function(clients) {
+                    $('[id^=card]').attr('class', 'borderNormal');
+                    
+                    $.each(clients, function(k, v) {
+                        if (v == 1)
+                            $('#card' + k).attr('class', 'borderOrange');
+                        else if (v > 1)
+                            $('#card' + k).attr('class', 'borderRed');
+                    });
+                }).fail(function (error) {
+                    alert('Error: ' + error);
+                });
+            }, 5000);
+        }).fail(function() {
+            // TODO Mooier, beter, anders
+            alert('An error has occured. Please try again.');
+        });
+    });
+</script>
+
+<article id="calculator" style="margin-bottom: 100px;">
+    @*<h1>Scrum master @ViewBag.Naam</h1>*@
+    @*Doet naam er eigenlijk überhaupt toe?*@
+    <form style="margin-top: 20px;">
+        <div style="float:right;">
+            <h2>@Model</h2>
+            <br/>
+            @if (Request["generateQR"] != null)
+            {
+                <img src="~/Qr/GetQr/@ViewBag.UniqueKey" alt="QR code voor mobiele apparaten" style="float:right; max-width: 100px;"/>
+            }
+        </div>
+        <br style="clear: both;"/>
+        <div style="margin-left:auto; margin-right:auto; width:640px;"><img class="fancyhr" src="/Content/img/hr.png" alt="" /></div>
+        <div id="players">
+            <span id="wachtenOpSpelers" class="cardname">Waiting for players...</span>
+            <ul id="playerList"></ul>
+            <br style="clear: both;" />
+            <div style="margin-left:auto; margin-right:auto; width:640px;"><img class="fancyhr" src="/Content/img/hr.png" alt="" /></div>
+            <div id="roundSummary" style="text-align: center; min-height: 275px">
+                <img id="totalCard" class="borderNormal" src="/Content/img/cards/card.png" alt="" />
+            </div>
+            <br style="clear: both;" />
+            @if (Request["showHistory"] != null)
+            {
+                <div style="margin-left: auto; margin-right: auto; width: 640px;"><img class="fancyhr" src="/Content/img/hr.png" alt="" /></div>
+                <button class="btn btn-success" id="historyButton">Show/hide round history</button><br /><br />
+                <div id="roundHistory" style="display: none;">
+                    <table id="historyRecords" class="table table-striped">
+                    
+                    </table>
+                </div>
+            }
+        </div>
+        <button class="btn btn-success" id="legendaButton">Legend</button>
+        <div id="legenda" style="display: none">
+           <table>
+                <tr>
+                    <td><img style="width: 50px; margin: 5px;" src="~/Content/img/cards/cardGreen.png"/> = Active player</td>
+                    <td><img style="width: 50px; margin: 5px;" src="~/Content/img/cards/cardOrange.png"/> = Player?!</td>
+                    <td><img style="width: 50px; margin: 5px;" src="~/Content/img/cards/cardRed.png"/> = Inactive player (connection lost)</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center"><span class="cardname" style="display: inline">Playername</span> = No score received</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center"><span class="cardname" style="color: green; display: inline">Playername</span> = Score received!</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</article>

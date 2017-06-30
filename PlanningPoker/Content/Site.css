@@ -1,0 +1,494 @@
+﻿/* basic setup */
+
+body {
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    background: url(/Content/img/felt.jpg) center top;
+    padding: 0;
+    font-family: "Gill sans", "Gill sans MT", Calibri, sans-serif;
+}
+
+/* layout */
+
+article {
+    /*height: 974px;*/
+    width: 708px;
+    margin: 0 auto;
+    clear: both;
+}
+
+    article h1 {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 80px;
+        font-size: 40px;
+        letter-spacing: -1px;
+        padding: 3px 26px;
+    }
+
+#hands > ol {
+    border: 6px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    padding: 20px 20px 3px;
+    background: none;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+    #hands > ol > li {
+        height: 69px;
+        margin: 0 0 17px;
+        font-size: 16px;
+        line-height: 23px;
+    }
+
+#hands .cards {
+    width: 300px;
+    float: left;
+}
+
+    #hands .cards li {
+        display: block;
+        float: left;
+        width: 45px;
+        height: 69px;
+        margin-right: 15px;
+        text-indent: -9999px;
+        font-size: 0;
+        line-height: 0;
+        -moz-box-shadow: 0 1px 3px #000;
+        -webkit-box-shadow: 0 1px 3px #000;
+        box-shadow: 0 1px 3px #000;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+        #hands .cards li:last-child {
+            margin-right: 0;
+        }
+
+#hands .explanation {
+    width: 350px;
+    float: right;
+}
+
+#hands h2, #hands p {
+    display: inline;
+}
+
+#hands h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 5px;
+}
+
+/* cards */
+
+#hands .cards .rank {
+    display: block;
+    text-align: center;
+    text-indent: 0;
+    font-size: 24px;
+    line-height: 34px;
+    letter-spacing: -2px;
+    color: #000;
+}
+
+#hands .cards .hearts .rank, #hands .cards .diamonds .rank {
+    color: #f00;
+}
+
+#hands .cards .clubs {
+    background: url(/images/cards/clubs.png);
+}
+
+#hands .cards .spades {
+    background: url(/images/cards/spades.png);
+}
+
+#hands .cards .hearts {
+    background: url(/images/cards/hearts.png);
+}
+
+#hands .cards .diamonds {
+    background: url(/images/cards/diamonds.png);
+}
+
+/* calculator */
+
+#calculator form {
+    border: 6px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    padding: 20px 20px 20px 20px;
+    background: none;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#calculator p {
+    text-align: center;
+    margin: 0 auto 15px;
+    line-height: 18px;
+}
+
+#general-info label, #general-info input {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#general-info label {
+    width: auto;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0px auto;
+}
+
+#calculator input {
+    border: 3px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: url(/images/felt.jpg) center;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 auto 15px;
+}
+
+#chips {
+    border-collapse: collapse;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 3px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    display: block;
+}
+
+    #chips th, #chips td {
+        padding: 10px;
+        width: 80px;
+        font-size: 16px;
+        line-height: 23px;
+        text-align: center;
+    }
+
+    #chips thead {
+        display: none;
+    }
+
+    #chips #chip-values input {
+        border: none;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        height: 16px;
+        padding: 23px 0;
+        width: 60px;
+    }
+
+    #chips #chip-values th {
+        visibility: hidden;
+    }
+
+    #chips #chip-values #white-chip {
+        background: url(/images/chips/white.png) no-repeat center;
+        color: #009;
+    }
+
+    #chips #red-chip {
+        background: url(/images/chips/red.png) no-repeat center;
+    }
+
+    #chips #blue-chip {
+        background: url(/images/chips/blue.png) no-repeat center;
+    }
+
+    #chips #green-chip {
+        background: url(/images/chips/green.png) no-repeat center;
+    }
+
+    #chips #black-chip {
+        background: url(/images/chips/black.png) no-repeat center;
+    }
+
+    #chips tbody th {
+        text-transform: uppercase;
+        font-weight: bold;
+        width: 142px;
+        padding-left: 0;
+        text-align: left;
+    }
+
+    #chips tbody td {
+        font-size: 20px;
+    }
+
+    #chips input {
+        width: 40px;
+        padding: 10px;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 14px;
+    }
+
+/* footer */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    display: block;
+    padding: 25px 0;
+    margin: 30px 0 0;
+    width: 100%;
+    background: url(/Content/img/wood.jpg) top center;
+    border-top: 1px solid #444;
+}
+
+    /*footer a {
+	display: block;
+	width: 200px;
+	text-align: center;
+	margin: 0px auto;
+	font-size: 12px;
+	line-height: 14px;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 15px;
+	-moz-border-radius: 18px;
+	-webkit-border-radius: 18px;
+	border-radius: 18px;
+	-moz-box-shadow: 0px 1px 4px #111;
+	-webkit-box-shadow: 0px 1px 4px #111;
+	box-shadow: 0px 1px 4px #111;
+	text-shadow: 0px 1px 1px #eee;
+	color: #322712;
+	background: url(/images/plate.png) center no-repeat;
+}*/
+
+    footer em {
+        font-family: georgia, serif;
+        font-style: italic;
+        text-transform: lowercase;
+    }
+
+/*body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section {
+    display: block;
+}*/
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.pageTitle {
+    font-size: 56px;
+    color: rgba(255, 204, 0, 0.7);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: 'Sancreek', cursive;
+}
+
+.listTitle {
+    color: rgba(255, 204, 0, 0.7);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: 'Sancreek', cursive;
+}
+
+.circle-list {
+    counter-reset: li;
+    list-style-type: none;
+}
+
+    .circle-list li {
+        padding: 2.5em;
+        border-bottom: 1px dashed #ccc;
+    }
+
+    .circle-list h2 {
+        position: relative;
+        margin: 0;
+    }
+
+    .circle-list p {
+        margin: 0;
+    }
+
+    .circle-list h2:before {
+        content: counter(li);
+        counter-increment: li;
+        position: absolute;
+        z-index: -1;
+        left: -1.3em;
+        top: -.6em;
+        background: url(/Content/img/chips/white.png) no-repeat center;
+        height: 1.5em;
+        width: 1.5em;
+        border: .1em solid rgba(0,0,0,.05);
+        text-align: center;
+        font: italic bold 1em/1.5em Georgia, Serif;
+        color: #00008d;
+        border-radius: 1.5em;
+        transition: all .2s ease-out;
+    }
+
+    .circle-list li:hover h2:before {
+        /*background-color: #ffd797;*/
+        border-color: rgba(0,0,0,.08);
+        border-width: .2em;
+        color: #00008d;
+        transform: scale(1.2);
+    }
+ 
+.helpLink {
+    margin-left:auto;
+    margin-right:auto;
+    width:640px;
+    text-align: center;
+}
+
+.fancyhr {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url(/Content/img/hr.png) no-repeat;
+    width: 640px; /* Width of new image */
+    height: 21px; /* Height of new image */
+}
+
+#footerNotice {
+    color: rgba(255, 204, 0, 0.7);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: 'Sancreek', cursive;
+}
+
+#playerList {
+        list-style-type: none;
+    }
+
+    #playerList li {
+        float: left;
+        display: inline;
+        padding-right: 20px;
+        max-width: 90px;
+    }
+
+    #playerList li img {
+        max-width: 75px;
+    }
+
+    .borderNormal {
+        border: 6px solid #fff;
+        border-color: rgba(92, 162, 110, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .borderOrange {
+        border: 6px solid #fff;
+        border-color: rgba(210, 105, 30, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .borderRed {
+        border: 6px solid #fff;
+        border-color: rgba(178, 34, 34, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .cardname {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        margin-top: 5px;
+        color: rgba(255, 204, 0, 0.7);
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+        font-family: 'Sancreek', cursive;
+    }
+
+    .button {
+        border: none;
+        padding: 5px 15px;
+        background: rgba(92, 162, 110, 0.8);
+        color: #FFF;
+    }
+
+    #roundSummary img {
+        max-width: 75px;
+    }
+
+.cardSelected {
+    border: 6px solid #fff;
+        border-color: rgba(92, 162, 110, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+}

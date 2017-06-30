@@ -1,0 +1,45 @@
+﻿@using ScrumPlanningPoker
+@{
+    ViewBag.Title = "Scrum master - new game";
+}
+
+<article id="calculator">
+    <h1>@ViewBag.Title</h1>
+    
+    @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-error fade in">
+            <strong>Error:</strong>&nbsp;@ViewBag.ErrorMessage
+        </div>
+    }
+    
+    @using (Html.BeginForm("ScrumMaster", "Home", null, FormMethod.Post))
+    {
+        @*<label for="nameEdit">Name</label>*@
+        <input type="hidden" id="nameEdit" name="naam" maxlength="10" value="ScrumMaster" />
+        @*<br />*@
+        <label for="generateQRCheck">Generate QR code</label>
+        <input type="checkbox" id="generateQRCheck" name="GenerateQR" checked />
+        <br />
+        <label for="showHistoryCheck">Show score history table</label>
+        <input type="checkbox" id="showHistoryCheck" name="ShowHistory" />
+        <br />
+        <div id="cards" style="width: 90%; margin-left:auto;margin-right:auto;">
+            @foreach (int card in Enum.GetValues(typeof (Card)))
+            {
+                <img src="~/Content/img/cards/card@(card).png" alt="" style="max-width: 75px;" class="cardSelected" onclick="ToggleSelected(this);"/>
+            }
+        </div>
+        <br /><br />
+        <button type="submit" class="btn btn-large btn-success">Shuffle up!</button>
+    }
+</article>
+
+<script type="text/javascript">
+    function ToggleSelected(item) {
+        if ($(item).hasClass('cardSelected'))
+            $(item).removeClass('cardSelected');
+        else
+            $(item).addClass('cardSelected');
+    }
+</script>

@@ -1,0 +1,17 @@
+﻿@model ScrumPlanningPoker.ViewModels.HoofdschermViewModel
+
+@{
+    Layout = null;
+}
+@if (!string.IsNullOrEmpty(Model.Error))
+{
+    @Html.Label(Model.Error)
+}
+else
+{
+<text>Spelers:</text>
+    foreach (var s in Model.Spelers)
+    {
+        <text>@s.Name</text>
+    }
+}

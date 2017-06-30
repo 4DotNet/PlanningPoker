@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = string.Format("({0}) Planning poker", @ViewBag.UniqueKey);
+}
+
+<script src="~/signalr/hubs"></script>
+
+<script type="text/javascript">
+    var gameClient;
+    
+    $(function() {
+        gameClient = $.connection.gameHub;
+
+        $.connection.hub.start().done(function() {
+            try {
+                gameClient.server.signIn('@ViewBag.Naam', @ViewBag.UniqueKey, false);
+                
+                gameClient.server.join(@ViewBag.UniqueKey);
+            } catch(e) {
+                alert(e.Message);
+            }
+        }).fail(function() {
+            alert('An error occured while trying to connect. Please try again.');
+        });
+
+        setInterval(function() {
+            gameClient.server.ping(@ViewBag.UniqueKey);
+        }, 4000);
+
+        gameClient.client.receiveError = function(error, severe) {
+            if (severe)
+                document.location('/?errorMessage=' + error);
+        };
+        
+        gameClient.client.allScoresReceived = function(game) {
+            $('#scores .cardSelected').removeClass('cardSelected');
+            
+            $('#footerNotice').text('New round!');
+            $('#footerNotice').fadeIn();
+
+            setTimeout(function() {
+                $('#footerNotice').fadeOut(1000, function() {
+                    $('#footerNotice').empty();
+                });
+            }, 5000);
+        };
+    });
+    
+    function scoreClick(value, imgid) {
+        gameClient.server.sendScore('@ViewBag.Naam', @ViewBag.UniqueKey, value);
+        //$('.alert').alert(); // Werkt niet?
+        
+        $('#scores .cardSelected').removeClass('cardSelected');
+        $('#' + imgid).addClass('cardSelected');
+        
+        $('#footerNotice').text(value + ' sent...');
+        $('#footerNotice').fadeIn();
+
+        setTimeout(function() {
+            $('#footerNotice').fadeOut(1000, function() {
+                $('#footerNotice').empty();
+            });
+        }, 5000);
+    }
+</script>
+<div class="alert fade in" style="display: none;">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Test</strong>Om te alerten
+</div>
+<article id="calculator" style="margin-bottom: 20px;">
+    <br />
+    @*<h1>Welkom @ViewBag.Naam</h1>*@
+    <form>
+        You have joined game: @ViewBag.UniqueKey<br />
+        <br />
+
+        <table id="scores" class="table">
+            <tr>
+                <td onclick="scoreClick(1, 'card1');">
+                    <img id="card1" src="~/Content/img/cards/card1.png" alt="1" style="max-width: 75px;" /></td>
+                <td onclick="scoreClick(3, 'card3');">
+                    <img id="card3" src="~/Content/img/cards/card3.png" alt="3" style="max-width: 75px;" /></td>
+                <td onclick="scoreClick(5, 'card5');">
+                    <img id="card5" src="~/Content/img/cards/card5.png" alt="5" style="max-width: 75px;" /></td>
+            </tr>
+            <tr>
+                <td onclick="scoreClick(8, 'card8');">
+                    <img id="card8" src="~/Content/img/cards/card8.png" alt="8" style="max-width: 75px;" /></td>
+                <td onclick="scoreClick(13, 'card13');">
+                    <img id="card13" src="~/Content/img/cards/card13.png" alt="13" style="max-width: 75px;" /></td>
+                <td onclick="scoreClick(20, 'card20');">
+                    <img id="card20" src="~/Content/img/cards/card20.png" alt="20" style="max-width: 75px;" /></td>
+            </tr>
+            <tr>
+                <td onclick="scoreClick(40, 'card40');">
+                    <img id="card40" src="~/Content/img/cards/card40.png" alt="40" style="max-width: 75px;" /></td>
+                <td onclick="scoreClick(100, 'card100');">
+                    <img id="card100" src="~/Content/img/cards/card100.png" alt="100" style="max-width: 75px;" /></td>
+            </tr>
+        </table>
+    </form>
+</article>

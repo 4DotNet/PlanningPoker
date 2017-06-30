@@ -1,0 +1,374 @@
+﻿/* smartphone styles */
+
+body {
+    text-shadow: 0 1px 1px #222;
+    width: 320px;
+}
+
+article h1 {
+    font-size: 30px;
+    line-height: 28px;
+    padding: 15px 0 10px;
+    margin-bottom: 10px;
+}
+
+article, #calculator form {
+    height: auto;
+    max-width: 315px;
+    width: 315px;
+    margin: 0 auto;
+}
+
+#general-info input {
+    font-size: 24px;
+}
+
+#hands > ol {
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+    #hands > ol > li {
+        height: auto;
+        width: 285px;
+        margin: 10px 0;
+        font-size: 18px;
+        line-height: 22px;
+        padding: 15px;
+    }
+
+        #hands > ol > li:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-border-radius: 10px;
+        }
+
+#hands .cards {
+    width: 285px;
+    margin: 0 auto;
+    display: block;
+    height: 69px;
+    float: none;
+}
+
+#hands .explanation {
+    width: auto;
+    float: none;
+}
+
+#hands p {
+    display: block;
+    margin: 10px 0;
+    text-align: justify;
+}
+
+#hands h2 {
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* calculator */
+
+#calculator {
+    border-top: 3px solid rgba(255, 255, 255, 0.8);
+    padding: 15px 0 0;
+}
+
+    #calculator form {
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 20px;
+    }
+
+    #calculator p {
+        text-align: center;
+        margin: 0px auto 15px;
+        line-height: 18px;
+    }
+
+#general-info label, #general-info input {
+    display: block;
+    width: 200px;
+    padding: 16px;
+    font-size: 24px;
+    text-align: center;
+}
+
+#general-info label {
+    width: auto;
+    font-weight: bold;
+}
+
+#calculator input {
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    margin: 0px auto 15px;
+}
+
+#chips {
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 20px 0px 0px;
+    border: none;
+    max-width: 315px;
+    width: 315px;
+}
+
+    #chips th, #chips td {
+        padding: 5px 0px;
+        width: 63px;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+    }
+
+    #chips thead {
+        display: block;
+    }
+
+        #chips thead th {
+            text-indent: -9999px;
+            font-size: 0px;
+            line-height: 0;
+            width: 63px;
+            height: 63px;
+            padding: 0px;
+        }
+
+    #chips #chip-values #white-chip {
+        background-image: none;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+    }
+
+    #chips #white-col {
+        background: url(/images/chips/white.png) no-repeat center;
+    }
+
+    #chips #red-col {
+        background: url(/images/chips/red.png) no-repeat center;
+    }
+
+    #chips #blue-col {
+        background: url(/images/chips/blue.png) no-repeat center;
+    }
+
+    #chips #green-col {
+        background: url(/images/chips/green.png) no-repeat center;
+    }
+
+    #chips #black-col {
+        background: url(/images/chips/black.png) no-repeat center;
+    }
+
+    #chips #chip-values input {
+        border: none;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    #chips tbody th {
+        width: 63px;
+        padding: 5px 0px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 0px;
+        text-align: left;
+    }
+
+    #chips tbody td {
+        font-size: 14px;
+    }
+
+    #chips tbody tr {
+        display: block;
+        padding: 38px 0px 0px;
+        position: relative;
+    }
+
+    #chips input, #chips #chip-values input {
+        width: 33px;
+        padding: 10px;
+        text-align: center;
+        margin: 0px auto;
+        font-size: 14px;
+    }
+
+    #chips thead .labels {
+        display: none;
+    }
+
+    #chips tbody th.labels, #chips tbody td.labels {
+        position: absolute;
+        top: 15px;
+        left: 0px;
+        width: 315px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    #chips #chip-values th {
+        visibility: visible;
+    }
+
+.pageTitle {
+    font-size: 32px;
+    color: rgba(255, 204, 0, 0.7);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: 'Sancreek', cursive;
+}
+
+.listTitle {
+    color: rgba(255, 204, 0, 0.7);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: 'Sancreek', cursive;
+}
+
+.circle-list {
+    counter-reset: li;
+    list-style-type: none;
+}
+
+    .circle-list li {
+        padding: 2.5em;
+        border-bottom: 1px dashed #ccc;
+    }
+
+    .circle-list h2 {
+        position: relative;
+        margin: 0;
+    }
+
+    .circle-list p {
+        margin: 0;
+    }
+
+    .circle-list h2:before {
+        content: counter(li);
+        counter-increment: li;
+        position: absolute;
+        z-index: -1;
+        left: -1.3em;
+        top: -.6em;
+        background: #f5f5f5;
+        height: 1.5em;
+        width: 1.5em;
+        border: .1em solid rgba(0,0,0,.05);
+        text-align: center;
+        font: italic bold 1em/1.5em Georgia, Serif;
+        color: #00008d;
+        border-radius: 1.5em;
+        transition: all .2s ease-out;
+    }
+
+    .circle-list li:hover h2:before {
+        /*background-color: #ffd797;*/
+        border-color: rgba(0,0,0,.08);
+        border-width: .2em;
+        color: #00008d;
+        transform: scale(1.2);
+    }
+
+.helpLink {
+    margin-left:auto;
+    margin-right:auto;
+    width:320px;
+    text-align: center;
+}
+
+.fancyhr {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url(/Content/img/hr_small.png) no-repeat;
+    width: 320px; /* Width of new image */
+    height: 21px; /* Height of new image */
+}
+
+#footerNotice {
+    color: rgba(255, 204, 0, 0.7);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: 'Sancreek', cursive;
+}
+
+#playerList {
+        list-style-type: none;
+    }
+
+    #playerList li {
+        float: left;
+        display: inline;
+        padding-right: 20px;
+        max-width: 90px;
+    }
+
+    #playerList li img {
+        max-width: 75px;
+    }
+
+    .borderNormal {
+        border: 6px solid #fff;
+        border-color: rgba(92, 162, 110, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .borderOrange {
+        border: 6px solid #fff;
+        border-color: rgba(210, 105, 30, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .borderRed {
+        border: 6px solid #fff;
+        border-color: rgba(178, 34, 34, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .cardname {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        margin-top: 5px;
+        color: rgba(255, 204, 0, 0.7);
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+        font-family: 'Sancreek', cursive;
+    }
+
+    .button {
+        border: none;
+        padding: 5px 15px;
+        background: rgba(92, 162, 110, 0.8);
+        color: #FFF;
+    }
+
+    #roundSummary img {
+        max-width: 75px;
+    }
+
+    .cardSelected {
+    border: 6px solid #fff;
+        border-color: rgba(92, 162, 110, 0.8);
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+}

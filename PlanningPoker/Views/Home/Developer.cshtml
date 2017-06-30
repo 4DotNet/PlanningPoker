@@ -1,0 +1,25 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Developer - log in";
+}
+
+<article id="calculator">
+    <h1>@ViewBag.Title</h1>
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-error fade in">
+            <strong>Error:</strong>&nbsp;@ViewBag.ErrorMessage
+        </div>
+    }
+    
+    <form action="/Home/Developer" method="POST">
+        <label for="nameEdit">Name</label>
+        <input type="text" id="nameEdit" name="naam" maxlength="10"/><br />
+        <label for="uniqueKeyEdit">Key</label>
+        <input type="number" max="9999" min="0" id="uniqueKeyEdit" name="uniqueKey" value="@Request["sleutel"]"/>
+        <br />
+        <button type="submit" class="btn btn-large btn-success">All in!</button>
+    </form>
+</article>
