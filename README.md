@@ -2,6 +2,8 @@
 
 ![VSTS Build badge](https://4dotnet.visualstudio.com/_apis/public/build/definitions/716bf77f-d5d2-4a26-9722-7841e536fb04/2/badge)
 
+Current application is live at [planning-poker.nl](http://planning-poker.nl).
+
 ## History
 A few years ago two colleagues at 4DotNet worked at a customer where Scrum was just being introduced. Along with Scrum, they also started to do planning poker sessions to estimate their work. As the team kept growing, there soon weren't enough cards in the deck to let everyone join in.
 
