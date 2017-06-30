@@ -279,6 +279,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\img\src\pshero_0007.psd" />
     <Content Include="Content\img\src\touch-icon.psd" />
+    <Content Include="Deployment\Deploy-AzureResourceGroup.ps1" />
+    <Content Include="Deployment\WebSite.json" />
+    <Content Include="Deployment\WebSite.parameters.json" />
     <None Include="Properties\PublishProfiles\planning-poker - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\planning-poker - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
